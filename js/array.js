@@ -4,7 +4,7 @@
  * @Author: 赵会杰
  * @LastEditors: 赵会杰
  * @Date: 2018-12-08 20:37:46
- * @LastEditTime: 2019-12-01 21:20:23
+ * @LastEditTime: 2019-12-01 21:24:05
  */
 // 数组方法
 
@@ -23,7 +23,6 @@ function uniqueArray(arr) {
     }
     return newArr;
 }
-
 
 const max = [{ sort: 1 }, { sort: 8 }].reduce((pVal, cVal) => {
     return pVal > cVal.sort ? pVal : cVal.sort

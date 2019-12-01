@@ -4,7 +4,7 @@
  * @Author: 赵会杰
  * @LastEditors: 赵会杰
  * @Date: 2019-11-21 21:22:25
- * @LastEditTime: 2019-11-30 09:35:43
+ * @LastEditTime: 2019-12-01 21:43:50
  */
 /**
  * 深复制
@@ -62,14 +62,14 @@ function Child2() {
     this.type = "child2"
 }
 Child2.prototype = new Parent1()
-console.log(new Child2().name)
+// console.log(new Child2().name)
 
 function Child4() {
     Parent1.call(this);
     this.type = "child4"
 }
 Child4.prototype = Parent1.prototype
-console.log("child4", new Child4())
+// console.log("child4", new Child4())
 
 
 /**----------new
@@ -88,3 +88,17 @@ function newOperation(ctor, ...args) {
     let isFunction = typeof res === 'function';
     return isObject || isFunction ? res : object;
 }
+
+let obj1 = {
+    name: "obj1",
+    getName() {
+        return "obj1"
+    }
+}
+let obj2 = {
+    __proto__: obj1,
+    getName() {
+        return "obj2" + super.getName()
+    }
+}
+console.log(obj2.getName())
