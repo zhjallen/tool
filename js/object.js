@@ -4,7 +4,7 @@
  * @Author: 赵会杰
  * @LastEditors: 赵会杰
  * @Date: 2019-11-21 21:22:25
- * @LastEditTime: 2019-11-26 23:29:45
+ * @LastEditTime: 2019-11-30 09:35:43
  */
 /**
  * 深复制
@@ -46,4 +46,45 @@ function myInstanceOf(left, right) {
             proto = Object.getPrototypeOf(proto)
         }
     }
+}
+
+/**继承 */
+
+function Parent1() {
+    this.name = "parent"
+}
+function Child1() {
+    Parent1.call(this);
+    this.type = "child1"
+}
+// console.log(new Child1())
+function Child2() {
+    this.type = "child2"
+}
+Child2.prototype = new Parent1()
+console.log(new Child2().name)
+
+function Child4() {
+    Parent1.call(this);
+    this.type = "child4"
+}
+Child4.prototype = Parent1.prototype
+console.log("child4", new Child4())
+
+
+/**----------new
+ * new 
+ * 1、创建一个新对象
+ * 2、将this指向该对象
+ *  --------- */
+function newOperation(ctor, ...args) {
+    if (typeof ctor !== "function") {
+        throw new Error("newOperator function the first param must be a function")
+
+    }
+    let object = Object.create(ctor.prototype);
+    let res = ctor.apply(object, args);
+    let isObject = typeof res === 'object' && res !== null;
+    let isFunction = typeof res === 'function';
+    return isObject || isFunction ? res : object;
 }
