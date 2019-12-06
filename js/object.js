@@ -16,3 +16,24 @@ function deepClone(oldObject) {
     }
     return newObj
 }
+
+
+function _instanceof(left, right) {
+    // 获得类型的原型
+    let prototype = right.prototype;
+    // 获得对象的原型
+    let left = left.__proto_;
+    while (true) {
+        if (left === null) {
+            return false
+        }
+        if (left === prototype) {
+            return true
+            left = left.__proto_
+        }
+
+    }
+
+
+}
+// console.log(typeof console.log)
